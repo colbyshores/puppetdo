@@ -1,0 +1,10 @@
+require "rubygems"
+require "open-uri"
+require "json"
+require 'net/ssh'
+require 'colorize'
+require 'hiera'
+require 'puppet'
+require 'etc'
+require "/etc/puppet/dolibs/dolib.rb"
+require "/etc/puppet/dolibs/args.rb"

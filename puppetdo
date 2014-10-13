@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+require '/etc/puppet/dolibs/includes.rb'
+cluster = args(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
+
+#Cluster organization DSL for processing server groups.
+case cluster 
+
+  when 'web':
+    #web cluster
+    Puppetdo.process("www")
+    Puppetdo.process("serviceadmin")
+
+  when 'blog':
+    #blog cluster
+    Puppetdo.process("dev-blog")
+    Puppetdo.process("blog")
+
+  when 'microapp':
+    #microapp cluster
+    Puppetdo.process("microapp")
+    
+  when 'extranet':
+    #extranet cluster
+    Puppetdo.process("extranet")
+
+  when 'intranet':
+    #crm cluster
+    Puppetdo.process("crm")
+
+  when 'media':
+    #media cluster
+    Puppetdo.process("media")
+
+end
