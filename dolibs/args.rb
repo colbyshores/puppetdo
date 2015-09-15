@@ -24,7 +24,6 @@ def helpinfo
   puts  "-c clustername  or  --cluster clustername\n"\
         "to process cluster group stored in /etc/puppet/puppetdo\n"\
         "add --verbose or -v to the end for verbose output\n\n"\
-        "add --deploy or -d and then the tag(ex RELEASE-20140916) for code deployments\n\n"\
         "-c/--cluster with --noop to the end for cluster noop\n\n"\
         "To audit the server cluster to determine\n"\
         "Puppet cert -> dhcp mismatches use\n"\
@@ -63,12 +62,6 @@ def argvflags(argv, argv3 = nil)
       $flag[:verbose] = true
     when "-v"
       $flag[:verbose] = true
-    when "-d"
-      confirm('web')
-      $flag[:deploytag] = argv3
-    when "--deploy"
-      confirm('web')
-      $flag[:deploytag] = argv3
     when "--audit"
       $flag[:audit] = true
     when "-a"

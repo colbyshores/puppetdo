@@ -5,30 +5,55 @@ cluster = args(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
 #Cluster organization DSL for processing server groups.
 case cluster 
 
-  when 'web':
+  when 'web'
     #web cluster
-    Puppetdo.process("www")
     Puppetdo.process("serviceadmin")
+    Puppetdo.process("www")
 
-  when 'blog':
+  when 'blog'
     #blog cluster
     Puppetdo.process("dev-blog")
     Puppetdo.process("blog")
 
-  when 'microapp':
+  when 'microapp'
     #microapp cluster
     Puppetdo.process("microapp")
     
-  when 'extranet':
+  when 'extranet'
     #extranet cluster
     Puppetdo.process("extranet")
 
-  when 'intranet':
+  when 'intranet'
     #crm cluster
-    Puppetdo.process("crm")
+    Puppetdo.process("intranet")
 
-  when 'media':
+  when 'media'
     #media cluster
     Puppetdo.process("media")
+
+  when 'webmedia'
+    Puppetdo.process("webmedia")
+ 
+  when 'deals'
+    Puppetdo.process("deals")
+  #################
+  #    Logging
+  ################# 
+  when 'infraredis'
+    Puppetdo.process("infraredis")
+    Puppetdo.process("infrarediscdn")
+
+  when 'logstash'
+    Puppetdo.process("logstash")
+    Puppetdo.process("logstashcdn")
+
+  when 'logs'
+    Puppetdo.process("infraredis")
+    sleep 20
+    Puppetdo.process("logstash")
+    Puppetdo.process("infrarediscdn")
+    sleep 20
+    Puppetdo.process("logstashcdn")
+    Puppetdo.process("log")
 
 end
