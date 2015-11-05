@@ -6,10 +6,10 @@ cluster = args(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
 case cluster 
 
   when 'flushdns'
-   Puppetdo.commands(["service nscd reload"])
-   Puppetdo.process("serviceadmin")
-   Puppetdo.commands(["service nscd reload"])
-   Puppetdo.process("www")
+    Puppetdo.commands(["service nscd reload"])
+    Puppetdo.process("serviceadmin")
+    Puppetdo.commands(["service nscd reload"])
+    Puppetdo.process("www")
 
   when 'web'
     #web cluster
