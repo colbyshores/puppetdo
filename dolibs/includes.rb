@@ -2,7 +2,6 @@ require "rubygems"
 require "open-uri"
 require "json"
 require 'net/ssh'
-require 'colorize'
 require 'hiera'
 require 'puppet'
 require 'etc'
