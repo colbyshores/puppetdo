@@ -2,6 +2,7 @@
 require '/etc/puppet/dolibs/includes.rb'
 cluster = args(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
 
+
 #Cluster organization DSL for processing server groups.
 case cluster 
 
