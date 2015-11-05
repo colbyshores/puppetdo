@@ -5,10 +5,26 @@ cluster = args(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
 #Cluster organization DSL for processing server groups.
 case cluster 
 
+  when 'flushdns'
+   Puppetdo.commands(["service nscd reload"])
+   Puppetdo.process("serviceadmin")
+   Puppetdo.commands(["service nscd reload"])
+   Puppetdo.process("www")
+
   when 'web'
     #web cluster
     Puppetdo.process("serviceadmin")
+    ######################################
+    #Puppetdo.commands(ARRAY OF COMMANDS) is a command list buffer to send to SSH to handle special instances like the load balancer file(test.html)
+    Puppetdo.commands(
+                      [
+                        "rm /home/httpd/arch/public/smallsites/default/test.html",
+                        "sleep 15",
+                        "puppet agent --test",
+                        "cp /srv/www/htdocs/index.html /home/httpd/arch/public/smallsites/default/test.html",
+                      ])
     Puppetdo.process("www")
+    ######################################
 
   when 'blog'
     #blog cluster
