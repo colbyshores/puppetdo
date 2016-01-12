@@ -1,0 +1,30 @@
+#!/usr/bin/ruby
+require 'rubygems'
+require 'mail'
+require 'socket'
+require 'hiera'
+scope = YAML.load_file("#{File.expand_path(File.dirname(__FILE__))}/../hieradata/common.yaml").values
+hiera = Hiera.new(:config => "#{File.expand_path(File.dirname(__FILE__))}/../hiera.yaml")
+
+htmlresult=`#{File.expand_path(File.dirname(__FILE__))}/../puppetdo -c all --auditall | #{File.expand_path(File.dirname(__FILE__))}/aha`
+begin
+  #if hiera has an array of emails join by seperated comma 
+  recipients = hiera.lookup("email::puppetadmin","/",scope).join(", ") 
+rescue
+  #else if it has a single email then load variable as single email
+  recipients = hiera.lookup("email::puppetadmin","/",scope)
+end
+mailuser = hiera.lookup("email::user","/",scope)
+
+time = Time.new
+mail = Mail.deliver do
+  to      "#{recipients.join(", ")}"
+  from    "#{mailuser}"
+  subject "PuppetDo Server Audit for #{time.month}/#{time.year} on #{Socket.gethostname}" 
+
+  html_part do
+      content_type 'text/html; charset=UTF-8'
+      body "#{htmlresult}"
+  end
+
+end
