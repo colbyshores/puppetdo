@@ -1,5 +1,5 @@
 # puppetdo
-Puppetdo is a swiss army knife for Puppet deployments.  It audits the DHCP and Puppet certificate configurations as well runs deployments through SVN or Git.  It pulls the the DHCP configuration information from my IPtoDHCP JSON REST API.  Included are Ruby based examples of Hiera and Facter usage.  The file, puppetdo has a DSL for cluster groups.
+Puppetdo is a swiss army knife for Puppet deployments.  It audits the DHCP and Puppet certificate configurations.  It pulls the the DHCP configuration information from my IPtoDHCP JSON REST API.  Included are Ruby based examples of Hiera and Facter usage.  The file, puppetdo has a DSL for cluster groups.
 
 Copyright (c) 2015 Colby Shores. All rights reserved.
 
