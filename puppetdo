@@ -16,7 +16,7 @@ case cluster
     #web cluster
     Puppetdo.process("serviceadmin")
     ######################################
-    #Puppetdo.commands(ARRAY OF COMMANDS) is a command list buffer to send to SSH to handle special instances like the load balancer file(test.html)
+    #Puppetdo.commands(ARRAY OF COMMANDS) is a command list buffer to send to handle special instances like the load balancer file(test.html)
     Puppetdo.commands(
                       [
                         "rm /home/httpd/arch/public/smallsites/default/test.html",
